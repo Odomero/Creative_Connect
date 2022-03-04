@@ -1,6 +1,6 @@
 # Creative_Connect
 
-This application is a website that connects individuals to creatives (event planners, photographers e.t.c).
+This application is a website that connects individuals to creatives (event planners, photographers e.t.c). It was developed with Flask web framework.
 
 
 Set up the application  in your local machine with the following steps;
