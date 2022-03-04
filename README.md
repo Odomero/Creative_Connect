@@ -11,7 +11,8 @@ Virtual Environment on MacOS
 * Source ENV_NAME/bin/activate	to activate venv 
 * pip freeze > requirements.txt		to create requirements.txt file wit installed packages 
 * deactivate				to deactivate a venv 
-* rm -rf ENV_NAME/			deletes a venv 
+* rm -rf ENV_NAME/			deletes a venv
+
 Install flask (python must be installed)
 Clone the repository into your virtual environment.
 Create a Secret key in the main.py file
