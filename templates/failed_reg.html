@@ -1,0 +1,12 @@
+{% extends "base.html" %}	
+{% block title %}Failed Registration{% endblock %}
+{% block content %}
+    <section>
+    <p>Welcome to<br>Creatives Connect</p>
+        
+    <h2 style="color: rgb(126, 7, 7);">Hello {{name}}!! An account with this email {{email}} already exists</h2>
+
+    <div>Have an Account? or No Account? <button type="submit"><a href="/"><b>Log In or Sign Up</b></a></button></div><br>
+   
+    </section>
+{% endblock %}

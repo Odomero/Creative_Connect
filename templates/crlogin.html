@@ -1,0 +1,18 @@
+{% extends "base.html" %}	
+{% block title %}Creative Log In{% endblock %}
+{% block content %}      
+    <form method="POST">
+
+        Email: <input type="email" required name="Email" placeholder="Email"> <br> <br>
+        Password: <input type="password" required name="Password" placeholder="Password"> <br> <br>
+        
+        <input type="submit" name="" value="LOG IN">
+
+    </form>
+    <br>
+    <br>
+    <section class="sign">
+    <button><a href="/crsignup/"><b>Sign up as Creative(Vendor)</b></a></button>
+    </section>
+
+{% endblock %}

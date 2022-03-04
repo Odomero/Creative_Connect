@@ -1,0 +1,24 @@
+{% extends "base.html" %}	
+{% block title %}Sign Up{% endblock %}
+{% block content %}   
+
+
+    <form id="forms" method="POST">
+        First Name <input type="text" required name="FirstName" placeholder="First Name"> <br> <br>
+        Last Name <input type="text" required name="LastName" placeholder="Last Name"> <br> <br>
+        Email <input id="email" type="email" required name="Email" placeholder="Email"> <br> <br>
+        Mobile Number <input type="tel" required name="Mobile_Number" placeholder="+48 123456789"> <br> <br>
+        Password <input id="pass" type="password" required name="Password" placeholder="Password" minlength="6" value=""> <br>
+        <div id="message1" style="color:red;"></div><br>
+        Confirm Password <input id="pass2" type="password" required name="Password2" placeholder="Confirm Password" minlength="6"> <br>
+        <div id= "message2" style="color:red;"></div><br>
+        <button type="submit" >Sign Up</button>
+
+    </form>
+
+
+{% endblock %}
+{% block scripts %}
+
+<script src="{{ url_for('static', filename='js/validate.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}	
+{% block title %}Booking{% endblock %}
+{% block content %}
+   
+        <form id="formbook" method="POST">
+            Event Date <input type="date" required name="EventDate"> <br> <br>
+            Event Time <input type="time" required name="EventTime"> <br> <br>
+            Event Description <br>
+            <textarea name="EDescript" required style="width:250px;height:70px;"></textarea><br><br>
+            Event Duration <input type="text" required name="Duration" placeholder="Duration in hours"> <br> <br>
+            Event Address <input type="text" required name="Address" placeholder=""> <br> <br>
+            Zip Code <input type="text" required name="Zip" placeholder=""> <br> <br>
+            City <input type="text" required name="City" placeholder=""> <br> <br>
+            Country <input type="text" required name="Country" placeholder=""> <br> <br>
+    
+            <input type="submit" name="" value="Confirm Booking">
+    
+        </form> <br>
+        <button type="submit"><a href="/"><b>Back to home</b></a></button> 
+
+{% endblock %}

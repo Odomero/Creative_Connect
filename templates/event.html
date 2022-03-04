@@ -1,0 +1,24 @@
+{% extends "base.html" %}	
+{% block title %}EventPlanning{% endblock %}
+{% block content %}
+    <div class="page">
+        <h2>Event Planning Services</h2>
+        <p>Hello {{name}} <br>Welcome to Creatives Connect</p>
+        <br>
+        {% for planner in event_pl.values() %}
+   
+        <img class="image" src="{{ url_for('static', filename='img/ebooking.PNG') }} " width="500" height="300">
+        <div><h3>{{ planner[1] }}</h3></div>
+        <div>{{ planner[2] }}, {{ planner[11] }}, {{ planner[8] }}, {{ planner[12] }}.</div>
+        <p>{{ planner[4] }}</p>
+        <p><strong>Rate per hour: {{ planner[6] }}</strong></p>
+        <form class="hiddenf" action="/eventPvid/", method="POST">
+            <input type="hidden" required name="venid" value= "{{ planner[0]|safe }}"> 
+            <input type="submit" value="Book Now">
+        </form>
+        <hr>
+        {% endfor %}
+        <button type="submit"><a href="/"><b>Back to home</b></a></button>
+    </div>   
+    
+{% endblock %}

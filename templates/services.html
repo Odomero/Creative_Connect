@@ -1,0 +1,25 @@
+{% extends "base.html" %}	
+{% block title %}Creatives Services{% endblock %}
+{% block content %}
+
+ <section class="page">
+        <p>Hello {{name}}</p>
+        <div>Welcome to Creatives Connect</div>
+
+        <img src="{{ url_for('static', filename='img/EV2.3.PNG') }}" width="300" height="300">
+        <h3>Event Planning</h3>
+        <p>Hosting? We've got you covered!!<br>Weddings, Birthdays, Baby Shower, you name it!</p>
+        <button type="submit"><a href="/eventP/"><b>Book Now</b></a></button>
+        <hr>
+        <div class="page">
+        <img src="{{ url_for('static', filename='img/photography.PNG') }}" width="300" height="300">
+        <h3>Photography</h3>
+        <p>Wide array of services from studio shoots<br>to event photography</p>
+        <button type="submit"><a href="/photoG/"><b>Book Now</b></a></button><br><br>
+        </div>
+
+    </section>
+    <br>
+    <button type="submit"><a href="/logout/"><b>Log Out</b></a></button>
+    <button type="submit"><a href="/"><b>Back to home</b></a></button>
+{% endblock %}

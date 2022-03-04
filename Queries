@@ -1,0 +1,103 @@
+/* Created  Tables Within Database */
+
+CREATE TABLE Creatives (
+CreativeId VARCHAR(10) PRIMARY KEY UNIQUE NOT NULL,
+Name VARCHAR (50) NOT NULL);
+
+CREATE TABLE Zip_Code (
+ZipCode VARCHAR (20) PRIMARY KEY UNIQUE NOT NULL,
+City VARCHAR (20) NOT NULL,
+Country VARCHAR (20) NOT NULL);
+
+CREATE TABLE User (
+Email VARCHAR (20) PRIMARY KEY UNIQUE NOT NULL,
+UserId VARCHAR (50) UNIQUE NOT NULL,
+FirstName VARCHAR (50) NOT NULL,
+LastName VARCHAR (50) NOT NULL,
+MobileNumber VARCHAR (20) NOT NULL,
+Password VARCHAR (20) NOT NULL,
+LoginStatus INTEGER NOT NULL);
+
+
+CREATE TABLE Vendors (
+Email VARCHAR (50) PRIMARY KEY UNIQUE NOT NULL,
+VendorId VARCHAR(50) UNIQUE NOT NULL,
+BusinessName VARCHAR (50) NOT NULL,
+BusinessAddress VARCHAR (50) NOT NULL,
+MobileNumber VARCHAR (20) NOT NULL,
+BusinessOverview CHAR (100) NOT NULL,
+BusinessWebsite VARCHAR (100) ,
+HourlyRate REAL NOT NULL,
+Password VARCHAR (20) NOT NULL,
+LoginStatus INTEGER NOT NULL,
+Zip_code VARCHAR (20) REFERENCES Zip_code (ZipCode) NOT NULL);
+
+
+CREATE TABLE Booking (
+BookingId VARCHAR (50) PRIMARY KEY UNIQUE NOT NULL,
+AppointmentDate DATE NOT NULL,
+EventDescription VARCHAR (80) NOT NULL,
+EventAddress VARCHAR (50) NOT NULL,
+Special_requests VARCHAR (50),
+Event_duration INTEGER (10) NOT NULL,
+Status CHAR (20) DEFAULT Booked NOT NULL,
+userId BIGINT REFERENCES Users (UserId) NOT NULL,
+zipCode VARCHAR (20) NOT NULL REFERENCES Zip_code (ZipCode),
+vendorId VARCHAR(50) REFERENCES Vendors (VendorId) NOT NULL);
+
+CREATE TABLE Vendor_Creatives (
+Id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,
+Vendor_id VARCHAR (50) REFERENCES Vendors (VendorId) NOT NULL,
+Creative_id VARCHAR (50) REFERENCES Creatives (CreativeId) NOT NULL);
+
+/* Created records of Services*/
+INSERT INTO Creatives VALUES 
+("EV", "EventPlanning"),
+("PH", "Photography");
+
+/* Added ProfilePic Column to Vendors Table*/
+ALTER TABLE Vendors ADD ProfilePic VARCHAR (150) NOT NULL;
+
+/* Added EventTime Column to Booking Table*/
+ALTER TABLE Booking ADD EventTime TIME NOT NULL;
+
+INSERT INTO Vendor_Creatives (Vendor_id,Creative_id) VALUES
+("i32022012022:23:07","PH")
+
+/* A View that Merges both Vendor and Zip_code Table*/
+CREATE VIEW vendors_info AS 
+(SELECT v.*, z.City,z.Country FROM Vendors v
+INNER JOIN Zip_Code z ON v.Zip_code=z.ZipCode);
+
+/*Retrieving All Photography Vendors */
+SELECT * FROM vendors_info
+WHERE VendorId IN 
+(SELECT Vendor_id FROM Vendor_Creatives WHERE Creative_id = 
+(SELECT CreativeId FROM Creatives WHERE Name = "Photography"));
+
+/*Retrieving All EventPlanning Vendors */
+SELECT * FROM vendors_info
+WHERE VendorId IN 
+(SELECT Vendor_id FROM Vendor_Creatives WHERE Creative_id = 
+(SELECT CreativeId FROM Creatives WHERE Name = "EventPlanning"));
+
+/*Retrieving All Bookings for a Specific Vendor */
+SELECT b.*, z.City, z.Country, u.FirstName,u.Email,u.MobileNumber
+FROM Booking b 
+INNER JOIN Zip_Code z ON b.ZipCode=z.ZipCode 
+INNER JOIN User u ON b.userId=u.userId 
+WHERE VendorId = "i32022012022:23:07";
+
+/* Indexed HourlyRate of Vendors */
+CREATE INDEX idx_rate ON Vendors (HourlyRate);
+
+/* A Trigger that logs Users LogIn and LogOut Activity */
+CREATE TRIGGER UserLogIn AFTER UPDATE OF LoginStatus ON User 
+BEGIN
+INSERT INTO UserLog VALUES(NEW.UserId, NEW.LoginStatus, DATETIME('NOW')); END;
+
+/* A Trigger that logs Vendors LogIn and LogOut Activity */
+CREATE TRIGGER CreativesLogIn AFTER UPDATE OF LoginStatus ON Vendors 
+BEGIN
+INSERT INTO CreativesLog VALUES(NEW.VendorId, NEW.LoginStatus, DATETIME('NOW')); END;
+

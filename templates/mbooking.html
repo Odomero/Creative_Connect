@@ -1,0 +1,45 @@
+{% extends "base.html" %}	
+{% block title %}Booking History{% endblock %}
+{% block content %}
+    <div class="page">
+            <h3>Booking History</h3>
+            <table>
+                <tr>
+                    <th>Bookingid</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile Number</th>
+                    <th>Appointment Date</th>
+                    <th>Appointment Time</th>
+                    <th>Event Description</th>
+                    <th>Event Address</th>
+                    <th>City</th>
+                    <th>ZipCode</th>
+                    <th>Country</th>
+                    <th>Event Duration</th>
+                    <th>Status</th>
+                  </tr>
+                  {% for b,bo in booking.items() %}
+                  <tr>
+                    <td>{{ b }}</td>
+                    <td>{{ bo[11] }}</td>
+                    <td>{{ bo[12] }}</td>
+                    <td>{{ bo[13] }}</td>
+                    <td>{{ bo[0] }}</td>
+                    <td>{{ bo[8] }}</td>
+                    <td>{{ bo[1] }}</td>
+                    <td>{{ bo[2] }}</td>
+                    <td>{{ bo[9] }}</td>
+                    <td>{{ bo[6] }}</td>
+                    <td>{{ bo[10] }}</td>
+                    <td>{{ bo[3] }}</td>
+                    <td>{{ bo[4] }}</td>
+                  </tr>
+                 {% endfor %}
+            </table>
+        </section>  
+        <br><br>
+
+        <button type="submit"><a href="/crlogout/"><b>Log Out</b></a></button>
+    </div>
+{% endblock %}

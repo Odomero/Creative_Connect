@@ -1,0 +1,34 @@
+{% extends "base.html" %}	
+{% block title %}Sign Up{% endblock %}
+{% block content %}      
+    <form id="forms" method="POST">
+        <div class="aleft">
+
+        Business Name <input type="text" required name="BName" size="30" placeholder="Business Name"> <br> <br>
+    	Business Email <input type="email" required name="BEmail" size="30" placeholder=" Business Email"> <br> <br>
+        Mobile Number <input type="tel" required name="Mobile_Number" placeholder="+48 123456789"> <br> <br>
+        Business Address <input type="text" required name="Address" size="30" placeholder="Street Address"> <br> <br>
+        City <input type="text" required name="City" placeholder="City"> <br> <br>
+        Zip Code <input type="text" required name="ZipCode" placeholder="Zip Code"> <br> <br>
+        Country <input type="text" required name="Country" placeholder="Country"> <br> <br>
+        Business Website <input type="url" name="BWebsite" size="30" placeholder="Website link"> <br> <br>
+        Business Profile Picture <input type="file" name="ProfilePic"> <br> <br>
+        Business Description <br>
+        <textarea name="BDescript" required style="width:320px;height:70px;"></textarea><br><br>
+        Service Type <input type="radio" name="service" value="EventPlanning">EventPlanning
+        <input type="radio" name="service" value="Photography">Photography<br> <br>
+    	Hourly Rate <input type="text" required name="HourlyRate" placeholder="Hourly Rate"> <br> <br>
+        Password <input type="password" id="pass" required name="Password" placeholder="Password"> <br>
+        <div id="message1" style="color:red;"></div><br>
+        Confirm Password <input type="password" id="pass2" required name="Password2" placeholder="Confirm Password"> <br>
+        <div id= "message2" style="color:red;"></div><br>
+
+        <button type="submit" >Sign Up</button>
+        </div>
+    </form>
+
+
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/validate.js') }}"></script>
+{% endblock %}
